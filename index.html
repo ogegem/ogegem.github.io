@@ -1,96 +1,664 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certified Blog</title>
-    <link rel="stylesheet" href="style.css">
-     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&family=Great+Vibes&family=Satisfy&family=Caveat&family=Karla&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certified Menance {to the Patriarchy} 💋</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&family=Great+Vibes&family=Satisfy&family=Caveat&family=Karla&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --pink-main: #f16d8e;
+      --pink-soft: #f8d3e0;
+      --pink-deep: #e4527e;
+      --bg-light: #fff7fa;
+      --text-main: #1f1f1f;
+      --accent-dark: #4b1430;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --transition-fast: 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Karla", sans-serif;
+      background: radial-gradient(circle at top left, #ffe2ee 0, #fff7fa 40%, #ffffff 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    /* Layout wrapper */
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 24px 60px;
+    }
+
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(
+        to right,
+        rgba(245, 186, 218, 0.97),
+        rgba(255, 247, 250, 0.96)
+      );
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 24px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .title {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      color: var(--accent-dark);
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .tagline {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.2rem;
+      text-align: center;
+      color: var(--pink-deep);
+      max-width: 650px;
+    }
+
+    .logo {
+      margin-top: 8px;
+    }
+
+    .logo img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* NAV */
+
+    nav {
+      width: 100%;
+      margin-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      padding-top: 10px;
+    }
+
+    .blog-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .blog-nav a {
+      font-family: "Satisfy", cursive;
+      font-size: 1.3rem;
+      color: var(--accent-dark);
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 999px;
+      position: relative;
+      transition: background-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .blog-nav a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background-color: var(--pink-main);
+      transition: width var(--transition-fast);
+    }
+
+    .blog-nav a:hover,
+    .blog-nav .active a {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--pink-deep);
+      transform: translateY(-1px);
+    }
+
+    .blog-nav a:hover::after,
+    .blog-nav .active a::after {
+      width: 60%;
+    }
+
+    /* GENERIC SECTIONS */
+
+    section {
+      margin-top: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    section h2 {
+      font-family: "Pacifico", cursive;
+      font-size: 1.8rem;
+      color: var(--pink-main);
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    section p {
+      font-size: 1rem;
+      line-height: 1.7;
+      text-align: left;
+      margin-bottom: 12px;
+    }
+
+    /* ABOUT SECTION */
+
+    .about-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-section::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffe0eb, transparent);
+      opacity: 0.7;
+    }
+
+    /* TOPICS LIST */
+
+    .topics-section h2 {
+      margin-bottom: 4px;
+    }
+
+    .topics-section p {
+      margin-bottom: 16px;
+    }
+
+    .topics-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .topics-list li {
+      background-color: #fff;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(241, 109, 142, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .topics-list a {
+      display: block;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .topics-list li:hover {
+      transform: translateY(-2px);
+      border-color: var(--pink-main);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    /* BLOG CARDS */
+
+    .blog-section {
+      margin-top: 40px;
+    }
+
+    .blog-section h2 {
+      margin-bottom: 16px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .topic-card {
+      background-color: #ffffff;
+      border: 1px solid rgba(241, 109, 142, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 18px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .topic-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--pink-main);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .topic-image {
+      width: 100%;
+      height: 190px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+
+    .blog-topics {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+    }
+
+    .topic-card p {
+      font-size: 0.98rem;
+      word-wrap: break-word;
+      margin-bottom: 14px;
+    }
+
+    .read-more {
+      align-self: flex-start;
+      margin-top: auto;
+      padding: 9px 18px;
+      background: linear-gradient(135deg, var(--pink-main), var(--pink-deep));
+      color: white;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      box-shadow: 0 8px 18px rgba(228, 82, 126, 0.4);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        opacity var(--transition-fast);
+    }
+
+    .read-more:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 10px 24px rgba(228, 82, 126, 0.55);
+      opacity: 0.95;
+    }
+
+    /* CONTACT SECTION */
+
+    .contact-section {
+      text-align: left;
+    }
+
+    .contact-section .contact {
+      text-align: left;
+      font-family: "Pacifico", cursive;
+      color: var(--pink-main);
+      margin-bottom: 6px;
+    }
+
+    .contact-form {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 520px;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+      background-color: #fff;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--pink-main);
+      box-shadow: 0 0 0 3px rgba(241, 109, 142, 0.18);
+      background-color: #fff9fc;
+    }
+
+    .contact-form button {
+      align-self: flex-start;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--pink-main), var(--pink-deep));
+      color: white;
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 22px rgba(228, 82, 126, 0.45);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        opacity var(--transition-fast);
+    }
+
+    .contact-form button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(228, 82, 126, 0.6);
+      opacity: 0.98;
+    }
+
+    /* WRITER ABOUT */
+
+    .writer-about p {
+      font-style: italic;
+    }
+
+    /* SOCIAL MEDIA */
+
+    .social-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-media {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .social-media li a {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(241, 109, 142, 0.5);
+      text-decoration: none;
+      font-size: 0.95rem;
+      color: var(--accent-dark);
+      background-color: #fff;
+      transition: background-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .social-media li a:hover {
+      background-color: var(--pink-main);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(241, 109, 142, 0.5);
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 18px 16px 26px;
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 20px;
+    }
+
+    footer span {
+      color: var(--pink-main);
+      font-weight: 600;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 768px) {
+      .page-wrapper {
+        padding: 120px 16px 40px;
+      }
+
+      section {
+        padding: 20px 18px;
+      }
+
+      .header-inner {
+        padding-inline: 16px;
+      }
+
+      .tagline {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1 class="title">Certified Menance {to the Patriarchy} 💋</h1>
-        <p class="tagline">Where femininity meets radical thought: a blog dedicated to dismantling patriarchal structures and promoting feminist discourse.</p>
-        <div class="logo">
-            <img src="feminist_logo.jpg" alt="Certified Menance Logo">
-        </div>
-            <nav class="blog-nav">
-                <ul>
-                    <li class="active"><a href="certified.html">Home</a></li>
-                    <li class="active"><a href="about.html">About</a></li>
-                    <li class="active"><a href="blog.html">Blog</a></li>
-                    <li class="active"><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-    </header>
-    <main>
-        <section id="about" class="about-section">
-            <h2>About Certified Menance {to the Patriarchy}</h2>
-            <p>Certified Menance {to the Patriarchy} is a space born out of the necessity to scream quietly, to articulate the inarticulable frustrations, hopes, rage and resilience of being a woman in Nigeria. It is a love letter to women who are tired of being silenced, overlooked, and underestimated. Feminism is not foreign to us-it is survival.</p>
-            <h2>Welcome to the Certified Menance Blog</h2>
-            <p>This blog is dedicated to the girlies who refused to stay small, and the women who made noise anyway. 💖</p>
-        </section>
-        <section id="topics-section" class="topics-section">
-            <h2>What We Discuss</h2>
-            <ul class="topics-list">
-                <li class="topics"><a href="#feminism">📌 Congratulations, It's a Girl! (Condolences, Actually)</a></li>
-                <li class="topics"><a href="#gender-issues">📌 Being Feminine and Feminist.</a></li>
-                <li class="topics"><a href="#women-rights">📌 Our Bodies, Their Battleground: Nigerian Womanhood, Shame, and the Performance of Purity</a></li>
-            </ul>
-        </section>
-         <section id="blog-section" class="blog-section">
-            <h2>Latest Blog Posts</h2>
-            <div class="topic-card">
-                <img class="topic-image" src="girl_shoe.avif" alt="Girl Shoe">
-                <h3 class ="blog-topics">Congratulations, It's a Girl! (Condolences, Actually)</h3>
-                <p>This post explores the complexities of gender expectations and the societal pressures faced by women.</p>
-           <a href="blog_post1.html" class="read-more">Read More</a>
-            </div>
-            <div class="topic-card">
-                 <img class="topic-image" src="feminine_feminist.jpg" alt="Being Feminine and Feminist">
-                <h3 class ="blog-topics">Being Feminine and Feminist</h3>
-                <p>A deep dive into the intersection of femininity and feminism, challenging traditional norms.</p>
-           <a href="blog_post2.html" class="read-more">Read More</a>
-            </div>
-            <div class="topic-card">
-                 <img class="topic-image" src="battleground.avif" alt="Our Bodies, Their Battleground">
-                <h3 class ="blog-topics">Our Bodies, Their Battleground: Nigerian Womanhood, Shame, and the Performance of Purity</h3>
-                <p>An examination of the cultural narratives surrounding Nigerian womanhood and the politics of body autonomy.</p>
-            <a href="blog_post3.html" class="read-more">Read More</a>
-            </div>
-        </section>
-    </section>
-        <section id="contact-section" class="contact-section">
-            <h2 class="contact">Contact Us</h2>
-            <p class="contact">If you have any questions, suggestions, or just want to say hi, feel free to reach out!</p>
-            <form action="submit_form.php" class="contact-form" method="post">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
-    <section id="writer-about" class="writer-about">
-        <h2>About the Writer</h2>
-        <p>I'm the storm patriarchy warned itself about. Feminism, for me, isn't just theory - it's fire, it's resistance. I write to remember, to rage, and to reclaim. I'm that sharp-tongued, over-thinking, big-hearted Nigeria woman who has had enough. This space is my megaphone, and I fully intend to be loud with it.</p>
-    </section>
-    <section>
-        <h2>Follow Us</h2>
-        <p>Stay connected with us on social media for the latest updates and discussions!</p>
-        <ul class="social-media">
-            <li><a href="https://twitter.com/certifiedmenance" target="_blank">Twitter</a></li>
-            <li><a href="https://instagram.com/certifiedmenance" target="_blank">Instagram</a></li>
-            <li><a href="https://facebook.com/certifiedmenance" target="_blank">Facebook</a></li>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="title">Certified Menance {to the Patriarchy} 💋</h1>
+      <p class="tagline">
+        Where femininity meets radical thought: a blog dedicated to dismantling
+        patriarchal structures and promoting feminist discourse.
+      </p>
+      <div class="logo">
+        <img src="feminist_logo.jpg" alt="Certified Menance Logo" />
+      </div>
+
+      <nav class="blog-nav">
+        <ul>
+          <li class="active"><a href="certified.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-wrapper">
+    <!-- ABOUT BLOG -->
+    <section id="about" class="about-section">
+      <h2>About Certified Menance {to the Patriarchy}</h2>
+      <p>
+        Certified Menance {to the Patriarchy} is a space born out of the
+        necessity to scream quietly, to articulate the inarticulable
+        frustrations, hopes, rage and resilience of being a woman in Nigeria. It
+        is a love letter to women who are tired of being silenced, overlooked,
+        and underestimated. Feminism is not foreign to us—it is survival.
+      </p>
+      <h2>Welcome to the Certified Menance Blog</h2>
+      <p>
+        This blog is dedicated to the girlies who refused to stay small, and the
+        women who made noise anyway. 💖
+      </p>
     </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Certified Menance Blog. All rights reserved.</p>
-    </footer>
+
+    <!-- TOPICS -->
+    <section id="topics-section" class="topics-section">
+      <h2>What We Discuss</h2>
+      <p>
+        A living archive of rage, softness, theory, and survival—for Nigerian
+        women and every woman who has ever been told to shrink.
+      </p>
+      <ul class="topics-list">
+        <li>
+          <a href="#feminism"
+            >📌 Congratulations, It's a Girl! (Condolences, Actually)</a
+          >
+        </li>
+        <li>
+          <a href="#gender-issues">📌 Being Feminine and Feminist.</a>
+        </li>
+        <li>
+          <a href="#women-rights"
+            >📌 Our Bodies, Their Battleground: Nigerian Womanhood, Shame, and
+            the Performance of Purity</a
+          >
+        </li>
+      </ul>
+    </section>
+
+    <!-- BLOG CARDS -->
+    <section id="blog-section" class="blog-section">
+      <h2>Latest Blog Posts</h2>
+      <div class="blog-grid">
+        <article class="topic-card">
+          <img
+            class="topic-image"
+            src="girl_shoe.avif"
+            alt="Girl stepping into high heel shoe"
+          />
+          <h3 class="blog-topics">
+            Congratulations, It's a Girl! (Condolences, Actually)
+          </h3>
+          <p>
+            This post explores the complexities of gender expectations and the
+            societal pressures faced by women from the moment they're born.
+          </p>
+          <a href="blog_post1.html" class="read-more">Read More</a>
+        </article>
+
+        <article class="topic-card">
+          <img
+            class="topic-image"
+            src="feminine_feminist.jpg"
+            alt="Being Feminine and Feminist"
+          />
+          <h3 class="blog-topics">Being Feminine and Feminist</h3>
+          <p>
+            A deep dive into the intersection of softness and resistance,
+            challenging the myth that femininity and feminism can't coexist.
+          </p>
+          <a href="blog_post2.html" class="read-more">Read More</a>
+        </article>
+
+        <article class="topic-card">
+          <img
+            class="topic-image"
+            src="battleground.avif"
+            alt="Our Bodies, Their Battleground"
+          />
+          <h3 class="blog-topics">
+            Our Bodies, Their Battleground: Nigerian Womanhood, Shame, and the
+            Performance of Purity
+          </h3>
+          <p>
+            An examination of the cultural narratives that police Nigerian
+            women's bodies and the exhausting performance demanded in the name
+            of "purity."
+          </p>
+          <a href="blog_post3.html" class="read-more">Read More</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact-section" class="contact-section">
+      <h2 class="contact">Contact Us</h2>
+      <p class="contact">
+        If you have any questions, suggestions, or just want to say hi, feel
+        free to reach out!
+      </p>
+      <form action="submit_form.php" class="contact-form" method="post">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <!-- WRITER ABOUT -->
+    <section id="writer-about" class="writer-about">
+      <h2>About the Writer</h2>
+      <p>
+        I'm the storm patriarchy warned itself about. Feminism, for me, isn't
+        just theory – it's fire, it's resistance. I write to remember, to rage,
+        and to reclaim. I'm that sharp-tongued, over-thinking, big-hearted
+        Nigerian woman who has had enough. This space is my megaphone, and I
+        fully intend to be loud with it.
+      </p>
+    </section>
+
+    <!-- SOCIAL LINKS -->
+    <section class="social-section">
+      <h2>Follow Us</h2>
+      <p>Stay connected with us on social media for the latest updates and discussions!</p>
+      <ul class="social-media">
+        <li>
+          <a href="https://twitter.com/certifiedmenance" target="_blank"
+            >Twitter</a
+          >
+        </li>
+        <li>
+          <a href="https://instagram.com/certifiedmenance" target="_blank"
+            >Instagram</a
+          >
+        </li>
+        <li>
+          <a href="https://facebook.com/certifiedmenance" target="_blank"
+            >Facebook</a
+          >
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      &copy; 2025 <span>Certified Menance Blog</span>. All rights reserved.
+    </p>
+  </footer>
 </body>
 </html>
-
-
